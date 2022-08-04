@@ -132,6 +132,27 @@ class HBNBCommand(cmd.Cmd):
                 "Usage: show <class name> <id>"]
         print("\n".join(msg))
 
+    def do_count(self, args):
+        """
+        Counts an object passed or all if none is passed
+        """
+
+        all_objs = storage.all()
+        all_objs_list = list()
+        if args:
+            args = shlex.split(args)
+            if args[0] in self.all_models:
+                for key in all_objs:
+                    if type(all_objs[key]).__name__ == args[0]:
+                        all_objs_list.append(str(all_objs[key]))
+            else:
+                print("** class doesn't exist **")
+                return
+        else:
+            for key in all_objs:
+                all_objs_list.append(str(all_objs[key]))
+        print(len(all_objs_list))
+
     def do_destroy(self, args):
         """
         Deletes an instance based onthe class name
