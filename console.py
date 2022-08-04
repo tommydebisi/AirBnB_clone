@@ -84,11 +84,11 @@ class HBNBCommand(cmd.Cmd):
 
         if args:
             parsed = shlex.split(args)
-            try:
+            if parsed in self.all_models:
                 new_obj = eval(parsed[0])()
                 print(new_obj.id)
                 new_obj.save()
-            except Exception:
+            else:
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
