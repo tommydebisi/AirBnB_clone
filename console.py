@@ -5,8 +5,15 @@ An Interpreter for my Airbnb clone
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 from models import storage
 import shlex
+import re
 import sys
 
 
@@ -16,7 +23,37 @@ class HBNBCommand(cmd.Cmd):
     """
 
     prompt = "(hbnb) "
-    all_models = ["BaseModel"]
+    all_models = [
+        "BaseModel",
+        "User",
+        "Place",
+        "State",
+        "City",
+        "Amenity",
+        "Review"
+    ]
+
+    def precmd(self, line: str) -> str:
+        """
+            Runs after every input in console
+
+            Args:
+                line: the inputted text
+        """
+        regex = "^(\w+)\.(\w+)\(([^\)]*)"
+
+        if re.search(regex, line):
+            reg_pat = re.findall(regex, line)
+            c_name, method = reg_pat[0][0], reg_pat[0][1]
+            args = reg_pat[0][2]
+
+            if args:
+                temp = [arg.strip("'") for arg in reg_pat[0][2].split(", ")]
+                args = " ".join(temp)
+
+            return "{} {} {}".format(method, c_name, args)
+        else:
+            return super().precmd(line)
 
     def do_EOF(self, args):
         """
