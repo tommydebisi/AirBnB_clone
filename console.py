@@ -78,7 +78,7 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             all_objs = storage.all()
-            key = ".".join(args)
+            key = args[0] + "." + args[1]
             if key in all_objs:
                 obj = all_objs[key]
                 print(obj)
@@ -112,7 +112,7 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             all_objs = storage.all()
-            key = ".".join(args)
+            key = args[0] + "." + args[1]
             if key in all_objs:
                 del all_objs[key]
             else:
