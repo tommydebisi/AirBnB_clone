@@ -195,7 +195,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        setattr(obj, args[2].strip("\""), args[3].strip("\""))
+        setattr(obj, args[2], args[3])
 
     def help_update(self):
         """
