@@ -46,8 +46,9 @@ class HBNBCommand(cmd.Cmd):
         """
 
         if args:
+            parsed = shlex.split(args)
             try:
-                new_obj = eval(args)()
+                new_obj = eval(parsed[0])()
                 print(new_obj.id)
                 new_obj.save()
             except Exception:
@@ -78,7 +79,7 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             all_objs = storage.all()
-            key = args[0] + "." + args[1]
+            key = ".".join(args[:2])
             if key in all_objs:
                 obj = all_objs[key]
                 print(obj)
@@ -112,9 +113,10 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             all_objs = storage.all()
-            key = args[0] + "." + args[1]
+            key = ".".join(args[:2])
             if key in all_objs:
                 del all_objs[key]
+                storage.save()
             else:
                 print("** no instance found **")
 
@@ -195,7 +197,8 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        setattr(obj, args[2].strip("\""), args[3].strip("\""))
+        setattr(obj, args[2], args[3])
+        obj.save()
 
     def help_update(self):
         """
