@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
             Args:
                 line: the inputted text
         """
-        regex = "^(\w+)\.(\w+)\(([^\)]*)"
+        regex = r"^(\w+)\.(\w+)\(([^\)]*)"
 
         if re.search(regex, line):
             reg_pat = re.findall(regex, line)
@@ -84,7 +84,7 @@ class HBNBCommand(cmd.Cmd):
 
         if args:
             parsed = shlex.split(args)
-            if parsed in self.all_models:
+            if parsed[0] in self.all_models:
                 new_obj = eval(parsed[0])()
                 print(new_obj.id)
                 new_obj.save()
@@ -95,7 +95,7 @@ class HBNBCommand(cmd.Cmd):
 
     def help_create(self):
         msg = ["create a new instance of an object",
-                "Usage: create <class name>"]
+               "Usage: create <class name>"]
         print("\n".join(msg))
 
     def do_show(self, args):
@@ -129,7 +129,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         msg = ["Prints the string rep. of an ins based on class name & id",
-                "Usage: show <class name> <id>"]
+               "Usage: show <class name> <id>"]
         print("\n".join(msg))
 
     def do_count(self, args):
@@ -184,7 +184,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         msg = ["Deletes an instance based on the class name",
-                "Usage: destroy <class name> <id>"]
+               "Usage: destroy <class name> <id>"]
         print("\n".join(msg))
 
     def do_all(self, args):
@@ -214,7 +214,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         msg = ["string rep. of all ins on the class(optional) provided",
-                "Usage: all [<class name>]"]
+               "Usage: all [<class name>]"]
         print("\n".join(msg))
 
     def emptyline(self):
@@ -264,7 +264,7 @@ class HBNBCommand(cmd.Cmd):
         """
 
         msg = ["updates obect with new attributes",
-                "Usage: update <class name> <id> <attribute <value>"]
+               "Usage: update <class name> <id> <attribute <value>"]
         print("\n".join(msg))
 
 

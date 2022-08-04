@@ -11,6 +11,7 @@ import pep8
 from datetime import datetime as dt
 import time
 
+
 class TestBaseModelDocs(unittest.TestCase):
     """
     Testing if docs are present and if the files are PEP valid
@@ -24,6 +25,7 @@ class TestBaseModelDocs(unittest.TestCase):
 
     def test_class_docs(self):
         self.assertTrue(len(BaseModel.__doc__) > 4)
+
 
 class TestBaseModel(unittest.TestCase):
     """
@@ -98,6 +100,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(my_model1.created_at, my_model2.created_at)
         self.assertNotEqual(my_model1.updated_at, my_model2.updated_at)
 
+
 class TestBaseModelDict(unittest.TestCase):
     """
         Test class for Base Model Dict
@@ -126,7 +129,7 @@ class TestBaseModelDict(unittest.TestCase):
             created instance
         """
 
-        mod1 = BaseModel()  
+        mod1 = BaseModel()
         mod_dic = mod1.to_dict()
         new_mod = BaseModel(**mod_dic)
 
