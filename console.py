@@ -36,14 +36,19 @@ class HBNBCommand(cmd.Cmd):
     def precmd(self, line: str) -> str:
         """
             Runs after every input in console
-
             Args:
                 line: the inputted text
         """
-        regex = r"^(\w+)\.(\w+)\(([^\)]*)"
-
-        if re.search(regex, line):
-            reg_pat = re.findall(regex, line)
+        regex = [
+                 r"^(\w+)\.(\w+)\((.*)\)",
+                 r'(\w+)\.(\w+)\("([\w\d-]+)",\s({[\d\w\s\':\",]*})\)'
+                ]
+        if re.search(regex[1], line):
+            reg_pat = re.findall(regex[1], line)
+            args = self.update_dict(reg_pat)
+            return args
+        elif re.search(regex[0], line):
+            reg_pat = re.findall(regex[0], line)
             c_name, method = reg_pat[0][0], reg_pat[0][1]
             args = reg_pat[0][2]
 
@@ -255,8 +260,15 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
 
-        setattr(obj, args[2], args[3])
-        obj.save()
+        if len(args) > 4 and args[4] == "1":
+            del args[4]
+            args = args[2:]
+            for i in range(0, len(args), 2):
+                setattr(obj, args[i], args[i + 1])
+                obj.save()
+        else:
+            setattr(obj, args[2], args[3])
+            obj.save()
 
     def help_update(self):
         """
@@ -267,26 +279,26 @@ class HBNBCommand(cmd.Cmd):
                "Usage: update <class name> <id> <attribute <value>"]
         print("\n".join(msg))
 
+    def update_dict(self, reg_pat):
+        """
+        A parser for updating dict
+        """
+
+        c_name, method, ins_id = reg_pat[0][0], reg_pat[0][1], reg_pat[0][2]
+        dict_args = reg_pat[0][3]
+        if dict_args:
+            dict_args = eval(dict_args)
+            flag = 1
+            args = ""
+            for key, val in dict_args.items():
+                attr_val_pair = "\"{}\" \"{}\" ".format(key, val)
+                args += attr_val_pair
+                if flag:
+                    args += "1 "
+                    flag = 0
+
+        return "{} {} {} {}".format(method, c_name, ins_id, args)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-
-# regex = "(\w+)\.(\w+)\((.*)\)"
-
-# >>> args
-# "'id', 'email', 'someemail'"
-# >>> args.replace(", ", " ")
-# "'id' 'email' 'someemail'"
-# >>> [p.strip("'") for p in args.split(", ")]
-# ['id', 'email', 'someemail']
-# >>> " ".join([p.strip("'") for p in args.split(", ")])
-# 'id email someemail'
-# >>> p_s = " ".join([p.strip("'") for p in args.split(", ")])
-# >>> "{} {} {}".format(method, cls, p_s)
-# 'update User id email someemail'
-# >>> line = "(us.)"
-# >>> re.findall(regex, line)
-# []
-# >>> regex = "^(\w+)\.(\w+)\((.*)\)$"
-# >>> line = "User.show()"
-# >>> re.find
