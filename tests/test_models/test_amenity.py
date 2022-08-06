@@ -10,6 +10,8 @@ import inspect
 import pep8
 import time
 
+from models.base_model import BaseModel
+
 
 class TestAmenityDocs(unittest.TestCase):
     """
@@ -78,3 +80,11 @@ class TestAmenity(unittest.TestCase):
             check_dic = json.load(file)
         stringy = "Amenity." + my_amenity.id
         self.assertEqual(check_dic.get(stringy), my_amenity.to_dict())
+
+    def test_sub_class(self):
+        """
+            Test if Amenity is a sub class of basemodel
+        """
+        the_amenity = Amenity()
+        self.assertIsInstance(the_amenity, BaseModel)
+        self.assertEqual(the_amenity.name, "")
