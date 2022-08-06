@@ -46,17 +46,23 @@ class TestFileStorageDocs(unittest.TestCase):
         self.assertTrue(len(FileStorage.__doc__) > 4)
 
 class TestFileStorage(unittest.TestCase):
-    """Test the FileStorage class"""
+    """
+    Test the FileStorage class
+    """
 
     def test_all_returns_dict(self):
-        """Test that all returns the FileStorage.__objects attr"""
+        """
+        Test that all returns the FileStorage.__objects attr
+        """
         storage = FileStorage()
         new_dict = storage.all()
         self.assertEqual(type(new_dict), dict)
         self.assertIs(new_dict, storage._FileStorage__objects)
 
     def test_new(self):
-        """test that new adds an object to the FileStorage.__objects attr"""
+        """
+        test that new adds an object to the FileStorage.__objects attr
+        """
 
         storage = FileStorage()
         save = FileStorage._FileStorage__objects
@@ -72,7 +78,9 @@ class TestFileStorage(unittest.TestCase):
         FileStorage._FileStorage__objects = save
 
     def test_save(self):
-        """Test that save properly saves objects to file.json"""
+        """
+        Test that save properly saves objects to file.json
+        """
 
         os.remove("file.json")
         storage = FileStorage()
@@ -94,7 +102,9 @@ class TestFileStorage(unittest.TestCase):
 
 
     def test_reload(self):
-        """Tests if reload return the object from the file"""
+        """
+        Tests if reload return the object from the file
+        """
 
         os.remove("file.json")
         storage = FileStorage()
