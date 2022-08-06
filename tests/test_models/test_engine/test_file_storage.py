@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-A test module to test the functionality of the BaseModel(files)
+A test module to test the functionality of the BaseModel
 """
 
 from models.base_model import BaseModel
