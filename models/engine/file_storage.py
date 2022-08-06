@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    File storage module
+    File storage module(files)
 """
 import json as js
 import re
