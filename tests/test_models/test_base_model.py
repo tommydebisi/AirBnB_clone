@@ -18,12 +18,14 @@ class TestBaseModelDocs(unittest.TestCase):
     """
 
     def test_base_pep8_conformance(self):
+        """Test for pep conformance"""
         pep8style = pep8.StyleGuide(quiet=True)
         result = pep8style.check_files(['models/base_model.py'])
         self.assertEqual(result.total_errors, 0,
                          "Found code style errors (and warnings).")
 
     def test_class_docs(self):
+        """Testing class docs"""
         self.assertTrue(len(BaseModel.__doc__) > 4)
 
 
@@ -99,6 +101,18 @@ class TestBaseModel(unittest.TestCase):
         print(my_model2.created_at)
         self.assertNotEqual(my_model1.created_at, my_model2.created_at)
         self.assertNotEqual(my_model1.updated_at, my_model2.updated_at)
+
+    def test_save(self):
+        """Test that save method updates `updated_at` and calls
+        `storage.save`"""
+        inst = BaseModel()
+        old_created_at = inst.created_at
+        old_updated_at = inst.updated_at
+        inst.save()
+        new_created_at = inst.created_at
+        new_updated_at = inst.updated_at
+        self.assertNotEqual(old_updated_at, new_updated_at)
+        self.assertEqual(old_created_at, new_created_at)
 
 
 class TestBaseModelDict(unittest.TestCase):
