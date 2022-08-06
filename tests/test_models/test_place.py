@@ -10,6 +10,7 @@ import inspect
 import pep8
 import time
 
+
 class TestPlaceDocs(unittest.TestCase):
     """
     Testing if docs are present and PEP valid
@@ -22,6 +23,7 @@ class TestPlaceDocs(unittest.TestCase):
 
     def test_place_class_docs(self):
         self.assertTrue(len(Place.__doc__) > 4)
+
 
 class TestPlace(unittest.TestCase):
     """

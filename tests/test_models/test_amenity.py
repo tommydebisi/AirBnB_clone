@@ -10,6 +10,7 @@ import inspect
 import pep8
 import time
 
+
 class TestAmenityDocs(unittest.TestCase):
     """
     Testing if docs are present and PEP valid
@@ -22,6 +23,7 @@ class TestAmenityDocs(unittest.TestCase):
 
     def test_amenity_class_docs(self):
         self.assertTrue(len(Amenity.__doc__) > 4)
+
 
 class TestAmenity(unittest.TestCase):
     """

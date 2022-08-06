@@ -11,6 +11,7 @@ import pep8
 from datetime import datetime as dt
 import time
 
+
 class TestUserDocs(unittest.TestCase):
     """
     Testing if docs are present and PEP valid
@@ -23,6 +24,7 @@ class TestUserDocs(unittest.TestCase):
 
     def test_user_class_docs(self):
         self.assertTrue(len(User.__doc__) > 4)
+
 
 class TestUser(unittest.TestCase):
     """

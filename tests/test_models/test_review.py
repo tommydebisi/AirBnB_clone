@@ -10,6 +10,7 @@ import inspect
 import pep8
 import time
 
+
 class TestReviewDocs(unittest.TestCase):
     """
     Testing if docs are present and PEP valid
@@ -22,6 +23,7 @@ class TestReviewDocs(unittest.TestCase):
 
     def test_review_class_docs(self):
         self.assertTrue(len(Review.__doc__) > 4)
+
 
 class TestReview(unittest.TestCase):
     """
