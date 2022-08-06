@@ -56,7 +56,7 @@ class TestBaseModel(unittest.TestCase):
         self.assertIs(type(my_model1.created_at), dt)
 
     def test_updated_at(self):
-        "Tests updated at"""
+        """Tests updated at"""
         my_model1 = BaseModel(self)
         self.assertIs(type(my_model1.updated_at), dt)
 
