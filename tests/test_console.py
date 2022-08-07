@@ -135,6 +135,16 @@ class TestForConsole(unittest.TestCase):
             self.assertEqual(f.getvalue().strip('\n'),
                              str(all_objs.get(k_string)))
 
+    def test_help_for_create_command(self):
+        """
+        tests help string for create command
+        """
+
+        hlp_string = "create a new instance of an object\nUsage: create <class name>"
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help create")
+            self.assertEqual(f.getvalue().strip("\n"), hlp_string)
+
     def test_show_user(self):
         """
             tests the show command on valid class names
@@ -260,3 +270,14 @@ class TestForConsole(unittest.TestCase):
                 with self.subTest(key=key, value=value):
                     HBNBCommand().onecmd("show {} 111-745a-r78433".format(value.__name__))
                     self.assertEqual(f.getvalue().strip("\n"), "** no instance found **")
+
+    def test_help_for_show_command(self):
+        """
+        tests help string for show command
+        """
+
+        hlp_string = "Prints the string rep. of an ins based on class name & id\nUsage: show <class name> <id>"
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("help show")
+            self.assertEqual(f.getvalue().strip("\n"), hlp_string)
+
