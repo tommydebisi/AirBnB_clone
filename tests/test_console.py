@@ -281,3 +281,100 @@ class TestForConsole(unittest.TestCase):
             HBNBCommand().onecmd("help show")
             self.assertEqual(f.getvalue().strip("\n"), hlp_string)
 
+    def test_destroy_base_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create BaseModel")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy BaseModel {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "BaseModel.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
+    
+    def test_destroy_user_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create User")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy User {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "User.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
+    
+    def test_destroy_state_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create State")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy State {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "State.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
+
+    def test_destroy_reveiw_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create Review")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy Review {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "Review.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
+
+    def test_destroy_place_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create Place")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy Place {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "Place.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
+
+    def test_destroy_city_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create City")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy City {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "City.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
+
+    def test_destroy_amenity_model(self):
+        """
+            tests the destroy command on valid class names
+        """
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create Amenity")
+            my_baseid = f.getvalue().strip('\n')
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("destroy Amenity {}".format(my_baseid))
+            all_objs = storage.all()
+            k_string = "Amenity.{}".format(my_baseid)
+            self.assertEqual(None, all_objs.get(k_string))
