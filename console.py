@@ -223,6 +223,10 @@ class HBNBCommand(cmd.Cmd):
         print("\n".join(msg))
 
     def emptyline(self):
+        """
+        does nothing when no command is passed
+        """
+
         pass
 
     def do_update(self, args):
