@@ -1,5 +1,5 @@
 # AirBnB_clone - The Console
-![Hbnb-img](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20220806%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20220806T221233Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=fd8f303bd38d74a8e61ab602d2f8c563f9ce72346a9d750ac62c5387a0c3f62c)
+![Hbnb-img](./img/hbnb-image.png)
 
 **Creation of a command interpreter to manage the hbnb ojects**
 
