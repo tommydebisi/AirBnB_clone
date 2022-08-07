@@ -110,7 +110,7 @@ class TestForConsole(unittest.TestCase):
         """
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create")
-            self.assertEqual(f.getvalue(), "** class name missing **\n")
+            self.assertEqual(f.getvalue().strip("\n"), "** class name missing **")
 
     def test_for_wrong_class_name(self):
         """
@@ -118,7 +118,7 @@ class TestForConsole(unittest.TestCase):
         """
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create mymodel")
-            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+            self.assertEqual(f.getvalue().strip("\n"), "** class doesn't exist **")
 
     def test_show_base_model(self):
         """
@@ -231,7 +231,7 @@ class TestForConsole(unittest.TestCase):
         """
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("show")
-            self.assertEqual(f.getvalue(), "** class name missing **\n")
+            self.assertEqual(f.getvalue().strip("\n"), "** class name missing **")
 
     def test_for_wrong_class_name_show(self):
         """
@@ -239,12 +239,24 @@ class TestForConsole(unittest.TestCase):
         """
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("show mymodel")
-            self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+            self.assertEqual(f.getvalue().strip("\n"), "** class doesn't exist **")
 
-    # def test_for_wrong_class_name_show(self):
-    #     """
-    #         tests for the wrong class name using show command
-    #     """
-    #     with patch('sys.stdout', new=StringIO()) as f:
-    #         HBNBCommand().onecmd("show ")
-    #         self.assertEqual(f.getvalue(), "** class doesn't exist **\n")
+    def test_for_wrong_class_name_show(self):
+        """
+            tests for the wrong class name using show command
+        """
+        for key, value in classes.items():
+            with patch('sys.stdout', new=StringIO()) as f:
+                with self.subTest(key=key, value=value):
+                    HBNBCommand().onecmd("show {}".format(value.__name__))
+                    self.assertEqual(f.getvalue().strip("\n"), "** instance id missing **")
+            
+    def test_for_wrong_id(self):
+        """
+        tests if the id is valid
+        """
+        for key, value in classes.items():
+            with patch('sys.stdout', new=StringIO()) as f:
+                with self.subTest(key=key, value=value):
+                    HBNBCommand().onecmd("show {} 111-745a-r78433".format(value.__name__))
+                    self.assertEqual(f.getvalue().strip("\n"), "** no instance found **")
