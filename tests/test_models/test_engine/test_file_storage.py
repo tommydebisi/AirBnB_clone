@@ -12,6 +12,7 @@ from models.place import Place
 from models.review import Review
 from models.state import State
 from models.user import User
+from models import storage
 import unittest
 import json
 import inspect
@@ -22,6 +23,7 @@ import os
 
 classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
            "Place": Place, "Review": Review, "State": State, "User": User}
+
 
 class TestFileStorageDocs(unittest.TestCase):
     """
@@ -44,6 +46,7 @@ class TestFileStorageDocs(unittest.TestCase):
         """
 
         self.assertTrue(len(FileStorage.__doc__) > 4)
+
 
 class TestFileStorage(unittest.TestCase):
     """
@@ -100,7 +103,6 @@ class TestFileStorage(unittest.TestCase):
             js = f.read()
         self.assertEqual(json.loads(string), json.loads(js))
 
-
     def test_reload(self):
         """
         Tests if reload return the object from the file
@@ -116,3 +118,17 @@ class TestFileStorage(unittest.TestCase):
         storage.save()
         storage.reload()
         self.assertEqual(nw_dict, FileStorage._FileStorage__objects)
+
+    def test_storage_cls(self):
+        """
+        Tests if storage is of class File storage
+        """
+
+        self.assertIsInstance(storage, FileStorage)
+
+    def test_if_object_reloads(self):
+        """
+        Test if object reload in the init file
+        """
+
+        self.assertEqual(storage.all(), FileStorage._FileStorage__objects)
