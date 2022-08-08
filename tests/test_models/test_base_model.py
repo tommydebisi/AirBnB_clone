@@ -10,6 +10,7 @@ import inspect
 import pep8
 from datetime import datetime as dt
 import time
+from unittest import mock
 
 
 class TestBaseModelDocs(unittest.TestCase):
@@ -102,7 +103,8 @@ class TestBaseModel(unittest.TestCase):
         self.assertNotEqual(my_model1.created_at, my_model2.created_at)
         self.assertNotEqual(my_model1.updated_at, my_model2.updated_at)
 
-    def test_save(self):
+    @mock.patch('models.storage')
+    def test_save(self, mock_storage):
         """Test that save method updates `updated_at` and calls
         `storage.save`"""
         inst = BaseModel()
@@ -113,6 +115,7 @@ class TestBaseModel(unittest.TestCase):
         new_updated_at = inst.updated_at
         self.assertNotEqual(old_updated_at, new_updated_at)
         self.assertEqual(old_created_at, new_created_at)
+        self.assertTrue(mock_storage.save.called)
 
 
 class TestBaseModelDict(unittest.TestCase):
