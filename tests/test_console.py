@@ -475,7 +475,7 @@ class TestForConsole(unittest.TestCase):
         
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update BaseModel {}".format(my_baseid))
-            self.assertEqual(f.getvalue().strip("\n"), "** instance id missing **")
+            self.assertEqual(f.getvalue().strip("\n"), "** attribute name missing **")
 
     def test_update_wrong_id(self):
         """test the update command with wrong id passed"""
@@ -487,6 +487,17 @@ class TestForConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("update BaseModel 19283799283")
             self.assertEqual(f.getvalue().strip("\n"), "** no instance found **")
+
+    def test_update_two_arg(self):
+        """test the update command with two parameter passed"""
+
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("create BaseModel")
+            my_baseid = f.getvalue().strip('\n')
+        
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("update BaseModel {} first_name".format(my_baseid))
+            self.assertEqual(f.getvalue().strip("\n"), "** value missing **")
 
 
 
