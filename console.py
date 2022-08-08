@@ -168,22 +168,20 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
 
-        elif len(args) >= 1:
+        elif len(args) == 1:
             if args[0] in self.all_models:
                 print("** instance id missing **")
-                return
             else:
                 print("** class doesn't exist **")
-                return
 
-        
-        all_objs = storage.all()
-        key = ".".join(args[:2])
-        if key in all_objs:
-            del all_objs[key]
-            storage.save()
         else:
-            print("** no instance found **")
+            all_objs = storage.all()
+            key = ".".join(args[:2])
+            if key in all_objs:
+                del all_objs[key]
+                storage.save()
+            else:
+                print("** no instance found **")
 
     def help_destroy(self):
         """
