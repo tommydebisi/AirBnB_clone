@@ -113,20 +113,21 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
 
-        elif len(args) == 1:
+        else:
             if args[0] in self.all_models:
                 print("** instance id missing **")
+                return
             else:
                 print("** class doesn't exist **")
-
-        else:
-            all_objs = storage.all()
-            key = ".".join(args[:2])
-            if key in all_objs:
-                obj = all_objs[key]
-                print(obj)
-            else:
-                print("** no instance found **")
+                return
+            if len(args > 1):
+                all_objs = storage.all()
+                key = ".".join(args[:2])
+                if key in all_objs:
+                    obj = all_objs[key]
+                    print(obj)
+                else:
+                    print("** no instance found **")
 
     def help_show(self):
         """
@@ -168,20 +169,21 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
 
-        elif len(args) == 1:
+        else:
             if args[0] in self.all_models:
                 print("** instance id missing **")
+                return
             else:
                 print("** class doesn't exist **")
-
-        else:
-            all_objs = storage.all()
-            key = ".".join(args[:2])
-            if key in all_objs:
-                del all_objs[key]
-                storage.save()
-            else:
-                print("** no instance found **")
+                return
+            if len(args) > 1:
+                all_objs = storage.all()
+                key = ".".join(args[:2])
+                if key in all_objs:
+                    del all_objs[key]
+                    storage.save()
+                else:
+                    print("** no instance found **")
 
     def help_destroy(self):
         """
