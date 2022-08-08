@@ -168,11 +168,11 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 0:
             print("** class name missing **")
 
+        elif args[0] not in self.all_models:
+            print("** class doesn't exist **")
+
         elif len(args) == 1:
-            if args[0] in self.all_models:
-                print("** instance id missing **")
-            else:
-                print("** class doesn't exist **")
+            print("** instance id missing **")
 
         else:
             all_objs = storage.all()
