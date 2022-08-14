@@ -1,0 +1,118 @@
+/* Places styles */
+.container section.places{
+    width: 100%;
+}
+
+.places p{
+    margin: 0;
+}
+
+.biggie h1{
+    margin-bottom: 0;
+}
+.article-cont article{
+    width: 24.375rem;
+    padding: 1.25rem;
+    margin: 1.25rem;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.article-cont {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.top-card_head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-card_head h2{
+    display: block;
+    margin-left: auto;
+    margin-right: 3.125rem;
+}
+
+.price_by_night{
+    color: #FF5A5F;
+    border: 4px solid #FF5A5F;
+    border-radius: 50%;
+    min-width: 3.75rem;
+    height: 3.75rem;
+    font-size: 1.875rem;
+    display: flex;
+    padding: 7px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Information styles */
+.information{
+    height: 5rem;
+    border-top: 1px solid #DDDDDD;
+    border-bottom: 1px solid #DDDDDD;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.max_guest{
+    width: 6.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.max_guest .guest-icon{
+    background-image: url(../images/airbnb_group.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 1.25rem;
+}
+
+.number_rooms{
+    width: 6.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number_rooms .room-icon{
+    background-image: url(../images/airbnb_bed.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 1.25rem;
+}
+
+.number_bathrooms{
+    width: 6.25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.number_bathrooms .shower-icon{
+    background-image: url(../images/airbnb_shower.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 1.25rem;
+}
+
+.user{
+    text-align: left;
+    margin-bottom: 10px;
+}
+.user .owner-name{
+    font-weight: bold;
+}
+.description{
+    text-align: left;
+    margin-bottom: 10px;
+}

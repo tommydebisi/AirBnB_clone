@@ -1,0 +1,66 @@
+/* filters styles */
+.container section.filters{
+    width: 100%;
+    height: 4.375rem;
+    display: flex;
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+}
+
+.container section.filters button{
+    display: block;
+    font-size: 1.125rem;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 3rem;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    margin: 0.75rem 1.875rem 0.75rem auto;
+    cursor: pointer;
+}
+
+.container section.filters button:hover{
+    opacity: 0.9;
+}
+
+.locations{
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.locations .location-txt h3 {
+    font-weight: 600;
+    margin: 0;
+}
+
+.locations .location-txt h4{
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+}
+
+.amenities {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.amenities .amenity-txt h3{
+    font-weight: 600;
+    margin: 0;
+}
+
+.amenities .amenity-txt h4 {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin: 0;
+}
